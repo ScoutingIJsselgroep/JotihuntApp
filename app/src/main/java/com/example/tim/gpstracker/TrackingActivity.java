@@ -8,6 +8,7 @@ import android.location.LocationListener;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.location.LocationManager;
@@ -36,8 +37,8 @@ class LocationSender implements Runnable {
     public void run() {
         System.out.println(payload);
         try {
-            urlConnection.setReadTimeout(2500);
-            urlConnection.setConnectTimeout(2500);
+            urlConnection.setReadTimeout(5000);
+            urlConnection.setConnectTimeout(5000);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             urlConnection.setDoOutput(true);
@@ -86,8 +87,7 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
                     ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
-
-            locationManager.requestLocationUpdates(mprovider, 15000, 0, this);
+            locationManager.requestLocationUpdates(mprovider, 2500, 0, this);
         }
     }
 
