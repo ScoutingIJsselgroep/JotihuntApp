@@ -2,112 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/700f878cd897de317c3ea6fd8eaa2cca4342a938/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_951e53cf40cab7d1cb4b4d95027aea31617699c7.jar" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1ba07753d81c8fdfaa1d021defc0ae388c921949/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/ebfa7ff9ef95213b431d50189f598ac3c9da588a/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_75949d12bf68a717fce8eb565531f89312f0cc93.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/00142007fe21b27675741eafd72cf923cf97a5f8/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_4c291da81e684b46651112c3a95567b2b75a605b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/04703113ae9a12da4dc77dcb9e0f8ad3c893ac94/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_d6e9b947f743433d75e9ded5e008f0fa14017e61.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/8a4b10db421e32bb6729c47806a571f909575df3/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_da60610384de64365fa318f90f449e217f12ba57.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/b7970e72168e2277edbd3418d56f832a28fd011a/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_dff3f0dddd6ecc9e92393b915a29525f27bb6539.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/b36b952b5f44b53114057f8cd02e5a534838a242/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="952944218ecedea1554a513dec0c14d570642843">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_cd2e778d9ac8be17c28efc142dd7e9e91ac98b43.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/7814d665bb3d56bcc91ce37622f503f338a3025f/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_76a535a131c652bf2aa46bb8d3431cbc27fee3a0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/92d8063a89870714b63dfe3729f2aa5b6af251e2/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_4e97ed9553e6b715ddda4f816dda770fa96ee82a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="023ee503b631f69511e335a061ea008f8da60f40">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/support-annotations-26.0.0-alpha1_0614af1af666bdd6fa38fd477d07bd5e04a14c16.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/.android/build-cache/de23336d97c363748ca2c9cb31fe60ac082e6a03/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="9935891f23923f39d002087085d9696568a9f657">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/classes_2ad363b314458d103edabba62bbb84384225c393.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/tim/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_37ba86b25620d76292e3491cdf620da04874fef5.jar" />
+        sha1="9e4754eb448aec4fd2d43f917d78997e6895f158">
+        <dex dex="/home/tim/AndroidStudioProjects/JotihuntApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_66e00420671409b79fa46c91121c4b4dd4d83aca/classes.dex" />
     </item>
 
 </items>

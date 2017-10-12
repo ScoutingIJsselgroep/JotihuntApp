@@ -25,8 +25,8 @@ import java.net.URL;
 
 
 class LocationSender implements Runnable {
-    HttpURLConnection urlConnection;
-    String payload;
+    private HttpURLConnection urlConnection;
+    private String payload;
 
      LocationSender(HttpURLConnection urlConnection, String payload) {
          this.urlConnection = urlConnection;
@@ -35,10 +35,10 @@ class LocationSender implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(payload);
+        Log.d("Send", "Trying to second location data");
         try {
-            urlConnection.setReadTimeout(5000);
-            urlConnection.setConnectTimeout(5000);
+            urlConnection.setReadTimeout(2500);
+            urlConnection.setConnectTimeout(2500);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             urlConnection.setDoOutput(true);
@@ -47,10 +47,11 @@ class LocationSender implements Runnable {
             OutputStream os = urlConnection.getOutputStream();
             os.write(payload.getBytes());
             os.flush();
-            System.out.println(urlConnection.getResponseCode());
+            Log.d("Send", "Got response code " + String.valueOf(urlConnection.getResponseCode()));
             urlConnection.disconnect();
 
         } catch (IOException e) {
+            Log.d("Send", "Failed to send location data");
             e.printStackTrace();
         }
 
@@ -60,8 +61,6 @@ class LocationSender implements Runnable {
 public class TrackingActivity extends AppCompatActivity implements LocationListener {
     private EditText name;
     private Button toggle;
-    private LocationManager locationManager;
-    private String mprovider;
     URL url;
 
     @Override
@@ -78,10 +77,10 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
         name = (EditText) findViewById(R.id.editText2);
         toggle = (Button) findViewById(R.id.toggleButton2);
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria criteria = new Criteria();
 
-        mprovider = locationManager.getBestProvider(criteria, false);
+        String mprovider = locationManager.getBestProvider(criteria, false);
         if (mprovider != null && !mprovider.equals("")) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -93,11 +92,13 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onLocationChanged(Location location) {
+        Log.d("GPS", "Got new location data");
         if (!(toggle.getText().equals("Aan"))) {
-            System.out.println(toggle.getText());
+            Log.d("GPS", "Not sending: button is off");
             return;
         }
-        if (name.getText().equals("")) {
+        if (name.getText().toString().equals("")) {
+            Log.d("GPS", "Not sending: name is empty");
             return;
         }
 
@@ -111,6 +112,7 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
         }
 
         String payload = jsonObject.toString();
+        Log.d("GPS", "Payload: " + payload);
 
         try {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
