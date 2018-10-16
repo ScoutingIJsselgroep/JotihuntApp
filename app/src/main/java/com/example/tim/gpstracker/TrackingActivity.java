@@ -72,7 +72,7 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
 
         Context context = getApplicationContext();
         PowerManager mgr = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
-        WakeLock wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyWakeLock");
+        WakeLock wakeLock = mgr.newWakeLock(PowerManager.FULL_WAKE_LOCK, "MyWakeLock");
         wakeLock.acquire();
         Log.d("WAKELOCK", "Wakelock acquired");
 
