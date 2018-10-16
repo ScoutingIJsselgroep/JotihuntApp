@@ -12,6 +12,9 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.location.LocationManager;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.content.Context;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,6 +69,12 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+
+        Context context = getApplicationContext();
+        PowerManager mgr = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+        WakeLock wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyWakeLock");
+        wakeLock.acquire();
+        Log.d("WAKELOCK", "Wakelock acquired");
 
         try {
             url = new URL("https://www.eej.moe/api/car");
