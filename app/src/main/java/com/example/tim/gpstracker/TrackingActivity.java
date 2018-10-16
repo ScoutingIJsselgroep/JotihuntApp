@@ -68,7 +68,7 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
         setContentView(R.layout.activity_tracking);
 
         try {
-            url = new URL("http://www.eej.moe/api/car");
+            url = new URL("https://www.eej.moe/api/car");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
