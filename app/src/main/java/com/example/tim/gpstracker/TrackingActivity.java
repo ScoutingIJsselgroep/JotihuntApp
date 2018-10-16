@@ -23,7 +23,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
 class LocationSender implements Runnable {
     private HttpURLConnection urlConnection;
     private String payload;
@@ -69,7 +68,7 @@ public class TrackingActivity extends AppCompatActivity implements LocationListe
         setContentView(R.layout.activity_tracking);
 
         try {
-            url = new URL("http://178.32.217.139:3000/api/car");
+            url = new URL("http://www.eej.moe/api/car");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
