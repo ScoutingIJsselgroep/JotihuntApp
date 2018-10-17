@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
@@ -26,6 +27,9 @@ public class GPSService extends Service {
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 2500;
     private static final float LOCATION_DISTANCE = 0;
+
+    PowerManager pm;
+    PowerManager.WakeLock wl;
 
     private class LocationSender extends AsyncTask {
         private HttpURLConnection urlConnection;
@@ -144,6 +148,12 @@ public class GPSService extends Service {
 
     @Override
     public void onCreate() {
+        pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GPS Wakelock");
+
+        wl.acquire();
+
         Log.e("GPSService", "onCreate");
         initializeLocationManager();
 
@@ -173,6 +183,8 @@ public class GPSService extends Service {
 
     @Override
     public void onDestroy() {
+        wl.release();
+
         Log.e("GPSService", "onDestroy");
         if (mLocationManager != null) {
             for (GPSService.LocationListener listener : mLocationListeners) {
