@@ -22,6 +22,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class GPSService extends Service {
     private LocationManager mLocationManager = null;
@@ -32,11 +36,11 @@ public class GPSService extends Service {
     PowerManager.WakeLock wl;
 
     private class LocationSender extends AsyncTask {
-        private HttpURLConnection urlConnection;
+        private HttpsURLConnection urlConnection;
         private String payload;
 
         LocationSender(HttpURLConnection urlConnection, String payload) {
-            this.urlConnection = urlConnection;
+            this.urlConnection = (HttpsURLConnection) urlConnection;
             this.payload = payload;
         }
 
@@ -44,6 +48,8 @@ public class GPSService extends Service {
         protected Object doInBackground(Object[] objects) {
             Log.d("GPSService", "Trying to send location data");
             try {
+                TLSSocketFactory socketFactory = new TLSSocketFactory();
+                urlConnection.setSSLSocketFactory(socketFactory);
                 urlConnection.setReadTimeout(2500);
                 urlConnection.setConnectTimeout(2500);
                 urlConnection.setRequestMethod("POST");
@@ -64,6 +70,10 @@ public class GPSService extends Service {
             } catch (IOException e) {
                 Log.d("GPSService", "Failed to send location data");
                 e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (KeyManagementException e) {
+                e.printStackTrace();
             }
 
             return null;
@@ -80,7 +90,7 @@ public class GPSService extends Service {
             mLastLocation = new Location(provider);
 
             try {
-                url = new URL("http://www.eej.moe/api/car");
+                url = new URL("https://www.eej.moe/api/car");
                 Log.i("GPSService", "Building URL ok");
             } catch (MalformedURLException e) {
                 Log.d("GPSService", "Building URL error: " + e.getMessage());
@@ -153,6 +163,7 @@ public class GPSService extends Service {
         wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GPS Wakelock");
 
         wl.acquire();
+        Log.d("GPSService", "WakeLock acquired!");
 
         Log.e("GPSService", "onCreate");
         initializeLocationManager();
@@ -184,6 +195,7 @@ public class GPSService extends Service {
     @Override
     public void onDestroy() {
         wl.release();
+        Log.d("GPSService", "WakeLock released!");
 
         Log.e("GPSService", "onDestroy");
         if (mLocationManager != null) {
