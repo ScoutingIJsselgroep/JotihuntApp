@@ -27,6 +27,8 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import java.util.UUID;
+
 public class GPSService extends Service {
     private LocationManager mLocationManager = null;
     private static final int LOCATION_INTERVAL = 2500;
@@ -34,6 +36,8 @@ public class GPSService extends Service {
 
     PowerManager pm;
     PowerManager.WakeLock wl;
+
+    String name = UUID.randomUUID().toString();
 
     private class LocationSender extends AsyncTask {
         private HttpsURLConnection urlConnection;
@@ -105,7 +109,7 @@ public class GPSService extends Service {
             try {
                 jsonObject.accumulate("latitude", mLastLocation.getLatitude());
                 jsonObject.accumulate("longitude", mLastLocation.getLongitude());
-                jsonObject.accumulate("name", "TestUser123");
+                jsonObject.accumulate("name", name);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -153,15 +157,21 @@ public class GPSService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("GPSService", "onStartCommand");
         super.onStartCommand(intent, flags, startId);
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            String argName = (String) extras.get("Name");
+            if (!argName.equals("")) {
+                name = argName;
+            }
+        }
+
         return START_STICKY;
     }
 
     @Override
     public void onCreate() {
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-
         wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "GPS Wakelock");
-
         wl.acquire();
         Log.d("GPSService", "WakeLock acquired!");
 

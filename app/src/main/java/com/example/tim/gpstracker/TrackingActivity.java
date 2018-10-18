@@ -11,13 +11,15 @@ import android.content.Intent;
 public class TrackingActivity extends AppCompatActivity {
     private EditText name;
     private Button toggle;
+    public Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        intent = new Intent(this, GPSService.class);
+
         setContentView(R.layout.activity_tracking);
-        Log.d("GPSService", "Starting GPS service");
-        startService(new Intent(this, GPSService.class));
 
         name = (EditText) findViewById(R.id.editText2);
 
@@ -25,7 +27,17 @@ public class TrackingActivity extends AppCompatActivity {
         toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO
+                if (toggle.getText().equals("Aan")) {
+                    Log.d("GPSActivity", "Starting GPS service");
+                    intent.putExtra("Name", name.getText().toString());
+                    name.setEnabled(false);
+                    startService(intent);
+                }
+                else {
+                    Log.d("GPSActivity", "Stopping GPS service");
+                    name.setEnabled(true);
+                    stopService(intent);
+                }
             }
         });
     }
