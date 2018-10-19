@@ -187,14 +187,16 @@ public class GPSService extends Service {
 
         try {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, mLocationListeners[0]);
+            Log.d("GPSService", "Requesting updates for GPS");
         } catch (java.lang.SecurityException ex) {
             Log.i("GPSService", "Failed to request location update. Ignoring", ex);
         } catch (IllegalArgumentException ex) {
             Log.d("GPSService", "GPS provider does not exist");
         }
 
-        try {
+       try {
             mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, mLocationListeners[1]);
+            Log.d("GPSService", "Requesting updates for Network");
         } catch (java.lang.SecurityException ex) {
             Log.i("GPSService", "Failed to request location update. Ignoring", ex);
         } catch (IllegalArgumentException ex) {
