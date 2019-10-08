@@ -4,13 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.content.Intent;
 
 public class TrackingActivity extends AppCompatActivity {
     private EditText name;
-    private Button toggle;
+    private ToggleButton toggle;
     public Intent intent;
 
     @Override
@@ -21,13 +21,13 @@ public class TrackingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_tracking);
 
-        name = (EditText) findViewById(R.id.editText2);
+        name = (EditText) findViewById(R.id.nameField);
 
-        toggle = (Button) findViewById(R.id.toggleButton2);
+        toggle = (ToggleButton) findViewById(R.id.onOffButton);
         toggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (toggle.getText().equals("Aan")) {
+                if (toggle.isChecked()) {
                     Log.d("GPSActivity", "Starting GPS service");
                     intent.putExtra("Name", name.getText().toString());
                     name.setEnabled(false);

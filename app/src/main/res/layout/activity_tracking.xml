@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteX="0dp">
 
     <ToggleButton
-        android:id="@+id/toggleButton2"
+        android:id="@+id/onOffButton"
         android:layout_width="0dp"
         android:layout_height="94dp"
         android:layout_marginTop="68dp"
@@ -17,9 +17,9 @@
         android:text="ToggleButton"
         android:textOff="Uit"
         android:textOn="Aan"
-        app:layout_constraintLeft_toLeftOf="@+id/editText2"
-        app:layout_constraintRight_toRightOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintLeft_toLeftOf="@+id/nameField"
+        app:layout_constraintRight_toRightOf="@+id/nameField"
+        app:layout_constraintTop_toBottomOf="@+id/nameField"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
@@ -31,11 +31,11 @@
         android:layout_height="wrap_content"
         android:text="Status van de GPS tracker"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/toggleButton2"
+        app:layout_constraintBottom_toTopOf="@+id/onOffButton"
         android:layout_marginStart="21dp"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/toggleButton2"
+        app:layout_constraintLeft_toLeftOf="@+id/onOffButton"
         android:layout_marginLeft="21dp" />
 
     <TextView
@@ -68,7 +68,7 @@
         tools:layout_editor_absoluteX="20dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/nameField"
         android:layout_width="203dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
