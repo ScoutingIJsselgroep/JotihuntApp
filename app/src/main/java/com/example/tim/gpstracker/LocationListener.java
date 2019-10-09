@@ -24,7 +24,7 @@ public class LocationListener implements android.location.LocationListener {
         mLastLocation = new Location(provider);
 
         try {
-            url = new URL("https://www.eej.moe/api/car");
+            url = new URL("https://jotihunt.scouting-ijsselgroep.nl/api/car");
         } catch (MalformedURLException e) {
             Log.d("GPSService", "Error building URL");
         }
