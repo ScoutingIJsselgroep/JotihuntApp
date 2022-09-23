@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class GPSService extends Service {
-    private static final int LOCATION_INTERVAL = 2500;
+    private static final int LOCATION_INTERVAL = 5000;
     private static final float LOCATION_DISTANCE = 0;
 
     private LocationManager mLocationManager = null;

@@ -43,6 +43,7 @@ public class LocationListener implements android.location.LocationListener {
         try {
             jsonObject.accumulate("latitude", mLastLocation.getLatitude());
             jsonObject.accumulate("longitude", mLastLocation.getLongitude());
+            jsonObject.accumulate("speed", mLastLocation.getSpeed());
             jsonObject.accumulate("name", name);
         } catch (JSONException e) {
             e.printStackTrace();

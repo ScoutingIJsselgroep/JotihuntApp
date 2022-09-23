@@ -40,6 +40,7 @@ public class LocationSender extends AsyncTask {
                 os.flush();
                 Log.d("GPSService", "Got response code " + String.valueOf(urlConnection.getResponseCode()));
                 urlConnection.disconnect();
+
             } catch (Exception e) {
                 Log.d("GPSService", "Crashed at sending. Error: " + e);
             }

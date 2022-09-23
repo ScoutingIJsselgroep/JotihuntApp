@@ -12,10 +12,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.content.Intent;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -78,13 +81,13 @@ public class TrackingActivity extends AppCompatActivity implements EasyPermissio
         });
 
         String[] foregroundPerms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
-        String[] backgroundPerms = {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
 
         if (!EasyPermissions.hasPermissions(this, foregroundPerms)) {
             EasyPermissions.requestPermissions(this, "De app heeft toegang nodig tot je locatie om je locatie door te kunnen sturen.", 123, foregroundPerms);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            String[] backgroundPerms = new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION};
             if (!EasyPermissions.hasPermissions(this, backgroundPerms)) {
                 EasyPermissions.requestPermissions(this, "De app heeft altijd toegang nodig om ook te kunnen blijven sturen als je scherm uit staat. Selecteer \"Altijd toestaan\" op het volgende scherm", 124, backgroundPerms);
             }
