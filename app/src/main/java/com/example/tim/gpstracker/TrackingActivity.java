@@ -48,7 +48,6 @@ public class TrackingActivity extends AppCompatActivity implements EasyPermissio
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,7 @@ public class TrackingActivity extends AppCompatActivity implements EasyPermissio
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             if (!EasyPermissions.hasPermissions(this, backgroundPerms)) {
-                EasyPermissions.requestPermissions(this, "De app heeft altijd toegang nodig om ook te kunnen blijven sturen als je scherm uit staat", 124, backgroundPerms);
+                EasyPermissions.requestPermissions(this, "De app heeft altijd toegang nodig om ook te kunnen blijven sturen als je scherm uit staat. Selecteer \"Altijd toestaan\" op het volgende scherm", 124, backgroundPerms);
             }
         }
     }
@@ -95,5 +94,15 @@ public class TrackingActivity extends AppCompatActivity implements EasyPermissio
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Kill foreground service
+        intent.setAction("StopService");
+        name.setEnabled(true);
+        context.startForegroundService(intent);
     }
 }
