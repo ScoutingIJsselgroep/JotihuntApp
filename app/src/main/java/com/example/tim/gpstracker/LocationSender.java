@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.net.SocketFactory;
 import javax.net.ssl.HttpsURLConnection;
 
 public class LocationSender extends AsyncTask {

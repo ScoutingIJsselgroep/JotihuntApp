@@ -1,25 +1,62 @@
 package com.example.tim.gpstracker;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.content.Intent;
 
-public class TrackingActivity extends AppCompatActivity {
+import java.util.List;
+
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
+
+public class TrackingActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private EditText name;
     private ToggleButton toggle;
     public Intent intent;
+    public Context context;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if(EasyPermissions.somePermissionPermanentlyDenied(this, perms)){
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        intent = new Intent(this, GPSService.class);
-
         setContentView(R.layout.activity_tracking);
+
+        context = getApplicationContext();
+        intent = new Intent(this, GPSService.class);
 
         name = (EditText) findViewById(R.id.nameField);
 
@@ -28,19 +65,35 @@ public class TrackingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (toggle.isChecked()) {
-                    Log.d("GPSActivity", "Starting GPS service");
+                    intent.setAction("StartService");
                     intent.putExtra("Name", name.getText().toString());
                     name.setEnabled(false);
-                    startService(intent);
+                    context.startForegroundService(intent);
                 }
                 else {
-                    Log.d("GPSActivity", "Stopping GPS service");
+                    intent.setAction("StopService");
                     name.setEnabled(true);
-                    stopService(intent);
+                    context.startForegroundService(intent);
                 }
             }
         });
+
+        String[] foregroundPerms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] backgroundPerms = {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
+        if (!EasyPermissions.hasPermissions(this, foregroundPerms)) {
+            EasyPermissions.requestPermissions(this, "De app heeft toegang nodig tot je locatie om je locatie door te kunnen sturen.", 123, foregroundPerms);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            if (!EasyPermissions.hasPermissions(this, backgroundPerms)) {
+                EasyPermissions.requestPermissions(this, "De app heeft altijd toegang nodig om ook te kunnen blijven sturen als je scherm uit staat", 124, backgroundPerms);
+            }
+        }
     }
 
-
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
 }
