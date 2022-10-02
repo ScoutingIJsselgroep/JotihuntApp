@@ -67,6 +67,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\Tim\AppData\Local\Temp\ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
@@ -79,7 +80,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Tim\StudioProjects\JotihuntApp\app\src\main\java\com\example\tim\gpstracker\HP_vos.png" />
+                                                <entry key="imagePath" value="C:\Users\Tim\StudioProjects\JotihuntApp\app\src\main\java\com\example\tim\gpstracker\logo_HP.png" />
                                                 <entry key="scalingPercent" value="72" />
                                               </map>
                                             </option>
@@ -114,7 +115,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="32499c" />
-                                      <entry key="outputName" value="logo" />
+                                      <entry key="outputName" value="gpstrackerlogo" />
                                     </map>
                                   </option>
                                 </PersistentState>
